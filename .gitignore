@@ -35,3 +35,6 @@ staticfiles/
 
 # Swap-файлы от редакторов
 *.swp
+
+#файлы пришедшие из формы
+feedback_files/
