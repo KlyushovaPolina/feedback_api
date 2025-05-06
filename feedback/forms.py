@@ -12,4 +12,14 @@ class FeedbackForm(forms.ModelForm):
 
     def clean_file(self):
         file = self.cleaned_data.get('file')
+        if file:
+            max_size = 5 * 1024 * 1024
+            if file.size > max_size:
+                raise forms.ValidationError("Файл слишком большой. Максимальный размер: 5 МБ.")
         return file
+
+    def clean_description(self):
+        description = self.cleaned_data.get('description')
+        if not description.strip():
+            raise forms.ValidationError("Описание не может быть пустым.")
+        return description
